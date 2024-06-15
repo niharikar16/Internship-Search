@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:internship_search/view_deatils_page.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -58,25 +59,28 @@ class _SearchPageState extends State<SearchPage> {
         ),
         centerTitle: false,
         actions: [
-          OutlinedButton(
-            style: OutlinedButton.styleFrom(
-              side: BorderSide(color: Colors.blue),
-            ),
-            onPressed: () {
-              // Handle filter button press
-            },
-            child: Row(
-              children: [
-                Icon(
-                  Icons.filter_alt_rounded,
-                  color: Colors.blue,
-                ),
-                SizedBox(width: 8),
-                Text(
-                  'Filters',
-                  style: TextStyle(color: Colors.blue),
-                ),
-              ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                side: BorderSide(color: Colors.blue),
+              ),
+              onPressed: () {
+                // Handle filter button press
+              },
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.filter_alt_rounded,
+                    color: Colors.blue,
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    'Filters',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -138,7 +142,7 @@ class _SearchPageState extends State<SearchPage> {
                                         width: 50,
                                         margin: EdgeInsets.only(left: 16),
                                         child: Image.network(
-                                          'https://internshala.com/uploads/company_logo/${internship['company_logo']}',
+                                          '${internship['company_logo']}',
                                           fit: BoxFit.contain,
                                           errorBuilder: (BuildContext context,
                                               Object exception,
@@ -150,67 +154,140 @@ class _SearchPageState extends State<SearchPage> {
                                   ],
                                 ),
                                 SizedBox(height: 8),
-                                Text(
-                                  'Location: ${internship['location_names']?.join(', ') ?? 'N/A'}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.grey[900],
+                                Row(children: [
+                                  Icon(Icons.work,
+                                      color: Colors.grey.shade600, size: 16),
+                                  SizedBox(width: 8),
+                                  Text(
+                                    '${internship['work_from_home'] != false ? 'Work from' : 'On-site'}',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.grey[900],
+                                    ),
                                   ),
+                                ]),
+                                SizedBox(height: 8),
+                                Row(
+                                  children: [
+                                    Icon(Icons.play_circle,
+                                        color: Colors.grey.shade600, size: 16),
+                                    SizedBox(width: 8),
+                                    Text(
+                                      '${internship['start_date'] ?? 'N/A'}',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.grey[900],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 40,
+                                    ),
+                                    Icon(Icons.calendar_month_outlined,
+                                        color: Colors.grey.shade600, size: 16),
+                                    SizedBox(width: 8),
+                                    Text(
+                                      '${internship['duration'] ?? 'N/A'}',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.grey[900],
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(height: 8),
-                                Text(
-                                  'Duration: ${internship['duration'] ?? 'N/A'}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.grey[900],
-                                  ),
+                                Row(
+                                  children: [
+                                    Icon(Icons.monetization_on,
+                                        color: Colors.grey.shade600, size: 16),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(
+                                      '${internship['stipend']?['salary'] ?? 'Unpaid'}',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.grey[900],
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(height: 8),
-                                Text(
-                                  'Stipend: ${internship['stipend']?['salary'] ?? 'N/A'}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.grey[900],
-                                  ),
+                                SizedBox(height: 14),
+                                Row(
+                                  children: [
+                                    // SizedBox(width: 8),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey.shade200,
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 8, horizontal: 10),
+                                      child: Text(
+                                        '${internship['is_ppo'] ? 'Internship with job offer' : 'Internship'}',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.grey[900],
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey.shade200,
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 8, horizontal: 10),
+                                      child: Text(
+                                        '${internship['part_time'] ? 'Part Time' : 'Full Time'}',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.grey[900],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(height: 8),
-                                Text(
-                                  'Posted on: ${internship['posted_on'] ?? 'N/A'}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.grey[900],
-                                  ),
+                                SizedBox(
+                                  height: 14,
                                 ),
-                                SizedBox(height: 8),
-                                Text(
-                                  'Start Date: ${internship['start_date'] ?? 'N/A'}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.grey[900],
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade200,
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
-                                ),
-                                SizedBox(height: 8),
-                                Text(
-                                  'Part-Time: ${internship['part_time'] ? 'Yes' : 'No'}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.grey[900],
-                                  ),
-                                ),
-                                SizedBox(height: 8),
-                                Text(
-                                  'PPO: ${internship['is_ppo'] ? 'Yes' : 'No'}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.grey[900],
+                                  padding: EdgeInsets.all(8),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(
+                                        Icons.timelapse,
+                                        color: Colors.grey.shade600,
+                                        size: 20,
+                                      ),
+                                      SizedBox(
+                                        width: 8,
+                                      ),
+                                      Text(
+                                        '${internship['posted_on'] ?? 'N/A'}',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.grey[900],
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
                           ),
+
                           Divider(
                             height: 1,
-                            color: Colors.grey,
+                            color: Colors.grey.shade400,
                           ),
                           // Bottom Section: View Details Button
                           Padding(
@@ -220,6 +297,13 @@ class _SearchPageState extends State<SearchPage> {
                                 Spacer(),
                                 TextButton(
                                   onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            DetailPage(internship: internship),
+                                      ),
+                                    );
                                     // Handle view details button press
                                   },
                                   style: TextButton.styleFrom(
