@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:internship_search/view_deatils_page.dart';
+import 'package:internship_search/view_details_page.dart';
+import 'package:internship_search/AppBar/custom_appbar.dart';
+import 'package:internship_search/AppBar/Menu/custom_navbar.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -50,41 +52,8 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          'Internships',
-          style: TextStyle(
-              fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
-        ),
-        centerTitle: false,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                side: BorderSide(color: Colors.blue),
-              ),
-              onPressed: () {
-                // Handle filter button press
-              },
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.filter_alt_rounded,
-                    color: Colors.blue,
-                  ),
-                  SizedBox(width: 8),
-                  Text(
-                    'Filters',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+      drawer: CustomNavbar(),
+      appBar: CustomAppBar(),
       body: isLoading
           ? Center(child: CircularProgressIndicator())
           : errorMessage.isNotEmpty
@@ -95,7 +64,7 @@ class _SearchPageState extends State<SearchPage> {
                     var internship = internships[index];
                     return Card(
                       color: Colors.white,
-                      margin: EdgeInsets.symmetric(vertical: 6),
+                      margin: EdgeInsets.symmetric(vertical: 3),
                       // elevation: 3,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(1),
@@ -105,7 +74,7 @@ class _SearchPageState extends State<SearchPage> {
                         children: [
                           // Top Section: Internship Details
                           Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(20.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -291,7 +260,7 @@ class _SearchPageState extends State<SearchPage> {
                           ),
                           // Bottom Section: View Details Button
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(20.0),
                             child: Row(
                               children: [
                                 Spacer(),
@@ -306,20 +275,41 @@ class _SearchPageState extends State<SearchPage> {
                                     );
                                     // Handle view details button press
                                   },
+                                  // style: TextButton.styleFrom(
+                                  //   padding: EdgeInsets.symmetric(
+                                  //       vertical: 8, horizontal: 16),
+                                  //   backgroundColor: Colors.blue,
+                                  //   shape: RoundedRectangleBorder(
+                                  //     borderRadius: BorderRadius.circular(5),
+                                  //   ),
+                                  // ),
+                                  child: Text(
+                                    'View Details',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 6,
+                                ),
+                                TextButton(
+                                  onPressed: () {},
                                   style: TextButton.styleFrom(
                                     padding: EdgeInsets.symmetric(
-                                        vertical: 8, horizontal: 16),
-                                    backgroundColor: Colors.blue,
+                                        vertical: 14, horizontal: 16),
+                                    backgroundColor: Colors.blue.shade600,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                   ),
                                   child: Text(
-                                    'View Details',
+                                    'Apply now',
                                     style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.white,
-                                    ),
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500),
                                   ),
                                 ),
                               ],
