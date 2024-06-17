@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:internship_search/Search_Page/view_details_page.dart'; // Ensure this import matches the actual path
+import 'package:internship_search/Search_Page/view_details_page.dart';
 import 'package:internship_search/AppBar/custom_appbar.dart';
 import 'package:internship_search/AppBar/Menu/custom_navbar.dart';
 // import 'package:internship_search/se';
@@ -38,7 +38,7 @@ class _SearchPageState extends State<SearchPage> {
         final internshipsList = internshipsMeta.values.toList();
         setState(() {
           internships = internshipsList;
-          originalInternships = List.from(internships); // Store original data
+          originalInternships = List.from(internships);
           isLoading = false;
         });
       } else {
@@ -62,11 +62,9 @@ class _SearchPageState extends State<SearchPage> {
       _duration = duration;
 
       if (title.isEmpty && location.isEmpty && duration.isEmpty) {
-        // If all filters are empty, reset to original data
         internships.clear();
         internships.addAll(originalInternships);
       } else {
-        // Apply filters based on title, location, and duration
         internships.clear();
         internships.addAll(originalInternships.where((internship) {
           final matchesTitle = title.isEmpty ||
@@ -93,13 +91,10 @@ class _SearchPageState extends State<SearchPage> {
     final fullDurationLower = fullDuration.toLowerCase();
     final queryDurationLower = queryDuration.toLowerCase();
 
-    // Check for exact match
     if (fullDurationLower == queryDurationLower) return true;
 
-    // Check if fullDuration contains queryDuration as a substring
     if (fullDurationLower.contains(queryDurationLower)) return true;
 
-    // Handle specific cases like "2 months" matching "2 month" or "2months"
     final fullWords = fullDurationLower.split(' ');
     final queryWords = queryDurationLower.split(' ');
 

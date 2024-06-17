@@ -232,7 +232,6 @@ class _DetailPageState extends State<DetailPage> {
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 12),
-            // Placeholder for company details, replace with actual content
             Text(
               '${widget.internship['company_url'] ?? 'N/A'}',
               style: TextStyle(
@@ -241,7 +240,6 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
             SizedBox(height: 12),
-            // More company details can be added here
           ],
         ),
       ),

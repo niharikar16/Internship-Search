@@ -33,7 +33,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Simulate a delay for the splash screen
     Future.delayed(Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
@@ -46,7 +45,10 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: FlutterLogo(size: 200),
+        child: Image.asset(
+          'assets/logo.png',
+          height: 100,
+        ),
       ),
     );
   }

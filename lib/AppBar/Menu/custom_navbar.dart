@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:internship_search/AppBar/Menu/header_icons.dart';
 import 'package:internship_search/AppBar/Menu/explore_items.dart';
 
@@ -78,23 +77,17 @@ class CustomNavbar extends StatelessWidget {
                     IconWithLabel(
                       icon: Icons.equalizer,
                       label: 'Preference',
-                      onPressed: () {
-                        // Handle Facebook icon press
-                      },
+                      onPressed: () {},
                     ),
                     IconWithLabel(
                       icon: Icons.assignment,
                       label: 'Resume',
-                      onPressed: () {
-                        // Handle Facebook icon press
-                      },
+                      onPressed: () {},
                     ),
                     IconWithLabel(
                       icon: Icons.file_copy,
                       label: 'Applications',
-                      onPressed: () {
-                        // Handle Facebook icon press
-                      },
+                      onPressed: () {},
                     ),
                   ],
                 )
@@ -165,7 +158,6 @@ class CustomNavbar extends StatelessWidget {
               ],
             ),
           )
-          // Add other drawer items here if needed
         ],
       ),
     );

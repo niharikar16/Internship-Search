@@ -14,12 +14,12 @@ class ExploreItems extends StatelessWidget {
           icon,
           color: Colors.grey.shade800,
         ),
-        SizedBox(width: 8), // Add some space between the icon and the text
+        SizedBox(width: 8),
         Expanded(
           child: Text(
             title,
             style: TextStyle(fontSize: 16, color: Colors.grey.shade800),
-            overflow: TextOverflow.visible, // Ensure the text will wrap
+            overflow: TextOverflow.visible,
           ),
         ),
       ],

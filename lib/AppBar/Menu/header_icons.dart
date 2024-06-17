@@ -17,7 +17,7 @@ class IconWithLabel extends StatelessWidget {
     return Column(
       children: [
         CircleAvatar(
-          radius: 20, // Adjust the radius as needed
+          radius: 20,
           backgroundColor: const Color.fromARGB(255, 44, 155, 245),
           child: IconButton(
             icon: Icon(icon, color: Colors.white),

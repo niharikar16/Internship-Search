@@ -30,15 +30,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
           icon: Icon(Icons.search, color: Colors.black),
-          onPressed: () {
-            // Handle search button press
-          },
+          onPressed: () {},
         ),
         IconButton(
           icon: Icon(Icons.bookmark_outline, color: Colors.black),
-          onPressed: () {
-            // Handle bookmark button press
-          },
+          onPressed: () {},
         ),
       ],
       bottom: PreferredSize(
