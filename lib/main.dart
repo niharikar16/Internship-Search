@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:internship_search/search_page.dart'; // Replace with your actual file path
+import 'package:internship_search/Search_Page/search_page.dart'; // Replace with your actual file path
 
 void main() {
   runApp(MyApp());

@@ -83,11 +83,14 @@ class _DetailPageState extends State<DetailPage> {
               children: [
                 Icon(Icons.location_on, color: Colors.grey.shade600, size: 20),
                 SizedBox(width: 8),
-                Text(
-                  '${widget.internship['location_names']?.join(', ') ?? 'N/A'}',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.grey[900],
+                Expanded(
+                  child: Text(
+                    '${widget.internship['location_names']?.join(', ') ?? 'N/A'}',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.grey[900],
+                    ),
+                    overflow: TextOverflow.visible,
                   ),
                 ),
               ],

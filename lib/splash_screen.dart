@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:internship_search/search_page.dart';
+import 'package:internship_search/Search_Page/search_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

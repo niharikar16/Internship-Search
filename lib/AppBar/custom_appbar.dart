@@ -1,44 +1,13 @@
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor:
-            Colors.white, // Set your primary color (white in this case)
-        scaffoldBackgroundColor: Colors.white, // Set scaffold background color
-        appBarTheme: AppBarTheme(
-          backgroundColor:
-              Colors.white, // Ensure app bar background color is white
-          elevation: 0, // Remove app bar shadow
-        ),
-      ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(), // Use your custom AppBar
-      body: ListView.builder(
-        itemCount: 50,
-        itemBuilder: (context, index) => ListTile(
-          title: Text('Item $index'),
-        ),
-      ),
-    );
-  }
-}
+import 'package:internship_search/AppBar/Filter_Page/filter_page.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final Function(String, String, String) onApplyFilters;
+
+  CustomAppBar({
+    required this.onApplyFilters,
+  });
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -71,15 +40,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             // Handle bookmark button press
           },
         ),
-        IconButton(
-          icon: Icon(Icons.message_outlined, color: Colors.black),
-          onPressed: () {
-            // Handle message button press
-          },
-        ),
       ],
       bottom: PreferredSize(
-        preferredSize: Size.fromHeight(80.0),
+        preferredSize: Size.fromHeight(50.0),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: OutlinedButton(
@@ -87,7 +50,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               side: BorderSide(color: Colors.blue),
             ),
             onPressed: () {
-              // Handle filter button press
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FilterPage(
+                    onApplyFilters: onApplyFilters,
+                  ),
+                ),
+              );
             },
             child: Row(
               mainAxisSize: MainAxisSize.min,
